@@ -14,13 +14,10 @@ var current_state = STATE.IDLE
 
 func _ready():
 	_change_to_idle()
-	
-	pass # Replace with function body.
 
 func _process(delta):
 	
 	if current_state == STATE.IDLE:
-		
 		if position.distance_to(mouse_input.get_global_mouse_position()) < max_grab_distance:
 					_change_to_grabbed()
 
@@ -60,6 +57,6 @@ func _change_to_grabbed():
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	current_state = STATE.HITSTUN
 	
-	velocity = collision.get_normal() * delta * hitstun_speed * velocity.length() * 0.08
+	velocity = collision.get_normal() * delta * hitstun_speed
 	
 
