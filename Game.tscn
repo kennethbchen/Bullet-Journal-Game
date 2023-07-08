@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxktlf7m5thw"]
+[gd_scene load_steps=4 format=3 uid="uid://bxktlf7m5thw"]
 
-[ext_resource type="Texture2D" uid="uid://bke02cu24rhwk" path="res://icon.svg" id="1_5mmk3"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
+[ext_resource type="Texture2D" uid="uid://dylu3cq3lws6h" path="res://Sprites/PlayerHurtbox.png" id="1_jw0vf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d5p4o"]
+radius = 3.0
 
 [node name="Game" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(131, 100)
-texture = ExtResource("1_5mmk3")
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(73, 66)
+script = ExtResource("1_46845")
+
+[node name="HurtboxSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_jw0vf")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_d5p4o")
