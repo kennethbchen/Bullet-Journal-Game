@@ -10,6 +10,7 @@
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3f8an"]
+radius = 8.0
 
 [node name="Game" type="Node2D"]
 

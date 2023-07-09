@@ -91,6 +91,11 @@ func _stop_drawing():
 	if current_line_drawer == null:
 		return
 	
+	# Don't add pointless (ha) lines to the line parent
+	if current_line_drawer.points.size() <= 1:
+		current_line_drawer.queue_free()
+		return
+	
 	current_line_drawer.enabled = false
 	current_line_drawer.reparent(line_parent)
 	current_line_drawer = null
