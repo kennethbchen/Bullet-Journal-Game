@@ -4,6 +4,7 @@
 
 [node name="LineDrawer" type="Line2D"]
 top_level = true
-width = 2.0
+width = 3.0
+default_color = Color(0, 0, 0, 1)
 script = ExtResource("1_bdswj")
 min_distance = 3.0
