@@ -38,7 +38,7 @@ func _physics_process(delta):
 	
 	if current_state == STATE.GRABBED:
 		
-		if position.distance_to(mouse_input.get_global_mouse_position()) > 1:
+		if position.distance_to(mouse_input.get_global_mouse_position()) > 0.1:
 			velocity = (mouse_input.get_global_mouse_position() - position) * delta * max_speed
 		else:
 			velocity = Vector2.ZERO
@@ -67,8 +67,11 @@ func _change_to_idle():
 
 func _change_to_grabbed():
 	current_state = STATE.GRABBED
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	_start_drawing()
 	
@@ -97,6 +100,7 @@ func _stop_drawing():
 		return
 	
 	current_line_drawer.enabled = false
+	current_line_drawer.set_script(null)
 	current_line_drawer.reparent(line_parent)
 	current_line_drawer = null
 	
