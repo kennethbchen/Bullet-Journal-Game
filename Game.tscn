@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxktlf7m5thw"]
+[gd_scene load_steps=8 format=3 uid="uid://bxktlf7m5thw"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
 [ext_resource type="Texture2D" uid="uid://dylu3cq3lws6h" path="res://Sprites/PlayerHurtbox.png" id="1_jw0vf"]
+[ext_resource type="PackedScene" uid="uid://cmn84sc4c3hn3" path="res://LineDrawer.tscn" id="2_kkffy"]
 [ext_resource type="Script" path="res://MouseInputHandler.gd" id="3_g6vei"]
 [ext_resource type="Texture2D" uid="uid://bke02cu24rhwk" path="res://icon.svg" id="4_wu58r"]
 
@@ -12,12 +13,17 @@ radius = 3.0
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(94, 80)
+[node name="LineParent" type="Node" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("line_parent")]
+position = Vector2(75, 69)
 motion_mode = 1
 script = ExtResource("1_46845")
+line_drawer_scene = ExtResource("2_kkffy")
+line_parent = NodePath("../LineParent")
 
 [node name="HurtboxSprite" type="Sprite2D" parent="Player"]
+z_index = 2
 texture = ExtResource("1_jw0vf")
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Player"]
@@ -35,3 +41,6 @@ texture = ExtResource("4_wu58r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestProjectile"]
 shape = SubResource("CircleShape2D_3f8an")
+
+[connection signal="left_mouse_pressed" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_pressed"]
+[connection signal="left_mouse_released" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_released"]
