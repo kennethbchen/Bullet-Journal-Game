@@ -94,7 +94,7 @@ func _start_drawing():
 	
 func _stop_drawing():
 	
-	pen_sprite.position = Vector2(0, -6)
+	pen_sprite.position = Vector2(1, -6)
 	
 	if current_line_drawer == null:
 		return
