@@ -15,6 +15,7 @@ enum STATE {IDLE, GRABBED, HITSTUN}
 @export var hitstun_speed: float = 200
 @export var hitstun_friction: float = 5
 
+@onready var pen_sprite: Sprite2D = $PenSprite
 @onready var mouse_input: MouseInputHandler = $MouseInputHandler
 
 var current_state: STATE = STATE.IDLE
@@ -81,6 +82,8 @@ func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	
 func _start_drawing():
 	
+	pen_sprite.position = Vector2.ZERO
+	
 	if current_line_drawer != null:
 		return
 	
@@ -91,6 +94,8 @@ func _start_drawing():
 	
 func _stop_drawing():
 	
+	pen_sprite.position = Vector2(0, -6)
+	
 	if current_line_drawer == null:
 		return
 	
@@ -98,6 +103,8 @@ func _stop_drawing():
 	if current_line_drawer.points.size() <= 1:
 		current_line_drawer.queue_free()
 		return
+	
+	
 	
 	current_line_drawer.enabled = false
 	current_line_drawer.set_script(null)

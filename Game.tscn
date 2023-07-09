@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=10 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
 [ext_resource type="Texture2D" uid="uid://dylu3cq3lws6h" path="res://Sprites/PlayerHurtbox.png" id="1_jw0vf"]
 [ext_resource type="PackedScene" uid="uid://cmn84sc4c3hn3" path="res://Scenes/LineDrawer.tscn" id="2_uwqo8"]
+[ext_resource type="Texture2D" uid="uid://crhpivl7bdwgs" path="res://Sprites/Pen.png" id="3_iqhor"]
 [ext_resource type="Script" path="res://Scripts/MouseInputHandler.gd" id="4_cae04"]
 [ext_resource type="Texture2D" uid="uid://bke02cu24rhwk" path="res://icon.svg" id="4_wu58r"]
 [ext_resource type="Texture2D" uid="uid://d18tb4gbtrcct" path="res://Sprites/Background.png" id="6_mwbb3"]
@@ -28,6 +29,13 @@ line_parent = NodePath("../LineParent")
 z_index = 2
 texture = ExtResource("1_jw0vf")
 
+[node name="PenSprite" type="Sprite2D" parent="Player"]
+z_index = 2
+position = Vector2(0, -6)
+texture = ExtResource("3_iqhor")
+centered = false
+offset = Vector2(0, -128)
+
 [node name="Hurtbox" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_d5p4o")
 
@@ -48,6 +56,7 @@ shape = SubResource("CircleShape2D_3f8an")
 z_index = -4
 position = Vector2(144, 144)
 texture = ExtResource("6_mwbb3")
+metadata/_edit_lock_ = true
 
 [connection signal="left_mouse_pressed" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_pressed"]
 [connection signal="left_mouse_released" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_released"]
