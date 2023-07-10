@@ -35,7 +35,7 @@ points = PackedVector2Array(133, 224, 121, 224, 111, 227, 104, 231, 100, 238, 10
 [node name="LineParent" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("line_parent")]
-position = Vector2(75, 69)
+position = Vector2(203, 238)
 motion_mode = 1
 script = ExtResource("1_46845")
 line_drawer_scene = ExtResource("2_uwqo8")
