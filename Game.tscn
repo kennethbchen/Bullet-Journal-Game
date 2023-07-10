@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=12 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
+[ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="1_d48b6"]
 [ext_resource type="Texture2D" uid="uid://dylu3cq3lws6h" path="res://Sprites/PlayerHurtbox.png" id="1_jw0vf"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="1_s1vox"]
 [ext_resource type="PackedScene" uid="uid://cmn84sc4c3hn3" path="res://Scenes/LineDrawer.tscn" id="2_uwqo8"]
@@ -18,6 +19,20 @@ radius = 8.0
 [node name="GameLevel" type="Node2D"]
 metadata/_edit_vertical_guides_ = [1.0]
 
+[node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("source_line_parent", "drawing_line_parent")]
+script = ExtResource("1_d48b6")
+source_line_parent = NodePath("../FlowerDrawingGuide")
+drawing_line_parent = NodePath("../DrawingLineParent")
+
+[node name="TestDrawingGuide" type="Node" parent="."]
+
+[node name="GuideLine" type="Line2D" parent="TestDrawingGuide"]
+visible = false
+top_level = true
+points = PackedVector2Array(190, 59, 205, 102, 201, 146)
+width = 2.0
+default_color = Color(0.447059, 0.447059, 0.447059, 1)
+
 [node name="FlowerDrawingGuide" type="Node" parent="."]
 
 [node name="GuideLine" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
@@ -32,14 +47,14 @@ points = PackedVector2Array(144, 137, 150, 148, 155, 162, 163, 156, 172, 152, 18
 [node name="GuideLine4" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
 points = PackedVector2Array(133, 224, 121, 224, 111, 227, 104, 231, 100, 238, 107, 244, 121, 248, 140, 249, 155, 249, 167, 247, 177, 245, 182, 234, 177, 229, 166, 226, 156, 225, 146, 225)
 
-[node name="LineParent" type="Node" parent="."]
+[node name="DrawingLineParent" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("line_parent")]
 position = Vector2(203, 238)
 motion_mode = 1
 script = ExtResource("1_46845")
 line_drawer_scene = ExtResource("2_uwqo8")
-line_parent = NodePath("../LineParent")
+line_parent = NodePath("../DrawingLineParent")
 
 [node name="HurtboxSprite" type="Sprite2D" parent="Player"]
 z_index = 2
