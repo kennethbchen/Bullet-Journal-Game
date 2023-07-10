@@ -23,8 +23,6 @@ func calculate_error():
 		
 		var source_line = source_child as Line2D
 		
-		
-		
 		for source_point in source_line.points:
 			
 			# Find the point in the drawing that is closest to source_point
@@ -54,9 +52,7 @@ func calculate_error():
 				shortest_distance = min(shortest_distance, source_point.distance_to(Geometry2D.get_closest_point_to_segment(source_point, closest_line.points[closest_index], closest_line.points[closest_index + 1])))
 			
 			point_errors.push_back(shortest_distance)
-	
-	# Compute the standard deviation of the distance error
-	
+		
 	var avg_error: float = 0.0
 	
 	for num in point_errors:
