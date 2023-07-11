@@ -2,5 +2,6 @@
 
 [node name="GuideLine" type="Line2D"]
 top_level = true
+z_index = -1
 width = 2.0
 default_color = Color(0.447059, 0.447059, 0.447059, 1)

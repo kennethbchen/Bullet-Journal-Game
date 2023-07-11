@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctyv33hrjhojx"]
+
+[ext_resource type="Script" path="res://Scripts/BulletHell/Projectile.gd" id="1_kt5mv"]
+[ext_resource type="Texture2D" uid="uid://bke02cu24rhwk" path="res://icon.svg" id="2_kjl68"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3f8an"]
+radius = 8.0
+
+[node name="Projectile" type="CharacterBody2D"]
+z_index = 2
+motion_mode = 1
+script = ExtResource("1_kt5mv")
+speed = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_kjl68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3f8an")

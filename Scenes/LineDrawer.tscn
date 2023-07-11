@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/LineDrawer.gd" id="1_bdswj"]
 
 [node name="LineDrawer" type="Line2D"]
+show_behind_parent = true
 top_level = true
+z_index = 1
 width = 3.0
 default_color = Color(0, 0, 0, 1)
 script = ExtResource("1_bdswj")

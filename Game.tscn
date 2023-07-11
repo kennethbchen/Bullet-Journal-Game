@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=16 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
 [ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="1_d48b6"]
@@ -7,61 +7,151 @@
 [ext_resource type="PackedScene" uid="uid://cmn84sc4c3hn3" path="res://Scenes/LineDrawer.tscn" id="2_uwqo8"]
 [ext_resource type="Texture2D" uid="uid://crhpivl7bdwgs" path="res://Sprites/Pen.png" id="3_iqhor"]
 [ext_resource type="Script" path="res://Scripts/MouseInputHandler.gd" id="4_cae04"]
-[ext_resource type="Texture2D" uid="uid://bke02cu24rhwk" path="res://icon.svg" id="4_wu58r"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="5_0ne8o"]
 [ext_resource type="Texture2D" uid="uid://d18tb4gbtrcct" path="res://Sprites/Background.png" id="6_mwbb3"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="6_vwfgl"]
+[ext_resource type="PackedScene" uid="uid://ctyv33hrjhojx" path="res://Scenes/Projectile.tscn" id="8_i0f18"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="10_bdcdg"]
+
+[sub_resource type="Resource" id="Resource_2w8dj"]
+script = ExtResource("5_0ne8o")
+skip = false
+spawn_position_parent_path = NodePath("SpawnPointGenerator")
+projectile_scene = ExtResource("8_i0f18")
+aim_rotation_source_path = NodePath("")
+aim_type = 0
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = 0.0
+spawn_delay = 0.0
+transition_delay = 1.0
+spawn_cycles = 1
+step_cycles = 1
+sound_effect_name = ""
+sound_type = 0
+
+[sub_resource type="Resource" id="Resource_6wutw"]
+script = ExtResource("5_0ne8o")
+skip = false
+spawn_position_parent_path = NodePath("SpawnPointGenerator2")
+projectile_scene = ExtResource("8_i0f18")
+aim_rotation_source_path = NodePath("")
+aim_type = 0
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = 0.0
+spawn_delay = 0.0
+transition_delay = 1.0
+spawn_cycles = 1
+step_cycles = 1
+sound_effect_name = ""
+sound_type = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d5p4o"]
 radius = 3.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3f8an"]
-radius = 8.0
 
 [node name="GameLevel" type="Node2D"]
 metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("source_line_parent", "drawing_line_parent")]
 script = ExtResource("1_d48b6")
-source_line_parent = NodePath("../FlowerDrawingGuide")
-drawing_line_parent = NodePath("../DrawingLineParent")
+source_line_parent = NodePath("../Drawings/FlowerDrawingGuide")
+drawing_line_parent = NodePath("../Drawings/PlayerLineParent")
 
-[node name="TestDrawingGuide" type="Node" parent="."]
+[node name="Drawings" type="Node" parent="."]
 
-[node name="GuideLine" type="Line2D" parent="TestDrawingGuide"]
+[node name="TestDrawingGuide" type="Node" parent="Drawings"]
+
+[node name="GuideLine" type="Line2D" parent="Drawings/TestDrawingGuide"]
 visible = false
 top_level = true
 points = PackedVector2Array(190, 59, 205, 102, 201, 146)
 width = 2.0
 default_color = Color(0.447059, 0.447059, 0.447059, 1)
 
-[node name="FlowerDrawingGuide" type="Node" parent="."]
+[node name="FlowerDrawingGuide" type="Node" parent="Drawings"]
 
-[node name="GuideLine" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
+[node name="GuideLine" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
 points = PackedVector2Array(118, 105, 123, 93, 136, 86, 151, 89, 159, 102, 155, 119, 139, 129, 122, 121, 118, 105)
 
-[node name="GuideLine2" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
+[node name="GuideLine2" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
 points = PackedVector2Array(123, 93, 112, 83, 108, 68, 112, 58, 124, 61, 133, 72, 136, 86, 145, 72, 154, 63, 165, 62, 167, 72, 163, 85, 153, 94, 170, 89, 183, 86, 188, 93, 191, 102, 188, 109, 178, 113, 166, 114, 157, 112, 165, 125, 171, 138, 167, 147, 158, 150, 148, 146, 145, 139, 140, 129, 134, 140, 128, 146, 120, 151, 109, 153, 106, 140, 112, 129, 121, 121, 107, 119, 96, 117, 90, 112, 88, 104, 92, 97, 101, 93, 112, 93, 123, 93)
 
-[node name="GuideLine3" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
+[node name="GuideLine3" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
 points = PackedVector2Array(144, 137, 150, 148, 155, 162, 163, 156, 172, 152, 181, 151, 186, 155, 186, 162, 182, 169, 174, 172, 167, 171, 156, 169, 157, 178, 156, 189, 153, 205, 147, 222, 139, 234, 127, 234, 136, 221, 140, 211, 143, 197, 132, 196, 122, 194, 117, 189, 115, 182, 119, 177, 125, 176, 132, 177, 139, 181, 144, 190, 146, 175, 144, 163, 140, 150, 134, 139)
 
-[node name="GuideLine4" parent="FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
+[node name="GuideLine4" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("1_s1vox")]
 points = PackedVector2Array(133, 224, 121, 224, 111, 227, 104, 231, 100, 238, 107, 244, 121, 248, 140, 249, 155, 249, 167, 247, 177, 245, 182, 234, 177, 229, 166, 226, 156, 225, 146, 225)
 
-[node name="DrawingLineParent" type="Node" parent="."]
+[node name="PlayerLineParent" type="Node" parent="Drawings"]
+
+[node name="ProjectileGenerator" type="Node2D" parent="." node_paths=PackedStringArray("projectile_parent")]
+script = ExtResource("10_bdcdg")
+run_forever = true
+projectile_parent = NodePath("ProjectileParent")
+steps = Array[ExtResource("5_0ne8o")]([SubResource("Resource_2w8dj"), SubResource("Resource_6wutw")])
+
+[node name="ProjectileParent" type="Node" parent="ProjectileGenerator"]
+
+[node name="SpawnPointGenerator" type="Node2D" parent="ProjectileGenerator"]
+position = Vector2(61, -18)
+script = ExtResource("6_vwfgl")
+enabled = true
+point_count = 4
+init_rotation = 90.0
+position_offset = Vector2(46, 0)
+
+[node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
+rotation = 1.5708
+
+[node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
+position = Vector2(46, 0)
+rotation = 1.5708
+
+[node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
+position = Vector2(92, 0)
+rotation = 1.5708
+
+[node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
+position = Vector2(138, 0)
+rotation = 1.5708
+
+[node name="SpawnPointGenerator2" type="Node2D" parent="ProjectileGenerator"]
+position = Vector2(61, -18)
+script = ExtResource("6_vwfgl")
+enabled = true
+point_count = 4
+init_position = Vector2(23, 0)
+init_rotation = 90.0
+position_offset = Vector2(46, 0)
+
+[node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
+position = Vector2(23, 0)
+rotation = 1.5708
+
+[node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
+position = Vector2(69, 0)
+rotation = 1.5708
+
+[node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
+position = Vector2(115, 0)
+rotation = 1.5708
+
+[node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
+position = Vector2(161, 0)
+rotation = 1.5708
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("line_parent")]
+z_index = 3
 position = Vector2(203, 238)
 motion_mode = 1
 script = ExtResource("1_46845")
 line_drawer_scene = ExtResource("2_uwqo8")
-line_parent = NodePath("../DrawingLineParent")
+line_parent = NodePath("../Drawings/PlayerLineParent")
 
 [node name="HurtboxSprite" type="Sprite2D" parent="Player"]
-z_index = 2
 texture = ExtResource("1_jw0vf")
 
 [node name="PenSprite" type="Sprite2D" parent="Player"]
-z_index = 2
+modulate = Color(1, 1, 1, 0.466667)
 position = Vector2(1, -6)
 texture = ExtResource("3_iqhor")
 centered = false
@@ -72,16 +162,6 @@ shape = SubResource("CircleShape2D_d5p4o")
 
 [node name="MouseInputHandler" type="Node2D" parent="Player"]
 script = ExtResource("4_cae04")
-
-[node name="TestProjectile" type="CharacterBody2D" parent="."]
-position = Vector2(102, 43)
-motion_mode = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="TestProjectile"]
-texture = ExtResource("4_wu58r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestProjectile"]
-shape = SubResource("CircleShape2D_3f8an")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4
