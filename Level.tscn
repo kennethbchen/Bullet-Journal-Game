@@ -59,6 +59,7 @@ metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="Background" type="TextureRect" parent="ResultsUI"]
 modulate = Color(0, 0, 0, 0.490196)
@@ -142,26 +143,16 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Done!"
 
-[node name="Control2" type="VBoxContainer" parent="GameUI"]
+[node name="RestartButton" type="Button" parent="GameUI"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -52.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 24.0
+offset_left = -53.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 23.0
 grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="RestartButton" type="Button" parent="GameUI/Control2"]
-layout_mode = 2
 text = "Restart"
-
-[node name="ResetPenButton" type="Button" parent="GameUI/Control2"]
-layout_mode = 2
-text = "Reset
-Pen"
 
 [node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
 
@@ -312,6 +303,6 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/RestartLevelButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
-[connection signal="pressed" from="GameUI/Control2/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="left_mouse_pressed" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_pressed"]
 [connection signal="left_mouse_released" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_released"]

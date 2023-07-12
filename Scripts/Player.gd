@@ -130,7 +130,7 @@ func _stop_drawing():
 	current_line_drawer.set_script(null)
 	current_line_drawer.reparent(line_parent)
 	current_line_drawer = null
-	
+
 func _on_left_mouse_pressed():
 	if current_state == STATE.GRABBED:
 		_start_drawing()
