@@ -53,6 +53,43 @@ radius = 3.0
 [node name="GameLevel" type="Node2D"]
 metadata/_edit_vertical_guides_ = [1.0]
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DoneButton" type="Button" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -23.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Done!"
+
+[node name="Control2" type="VBoxContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -52.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 24.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="RestartButton" type="Button" parent="UI/Control2"]
+layout_mode = 2
+text = "Restart"
+
+[node name="ResetPenButton" type="Button" parent="UI/Control2"]
+layout_mode = 2
+text = "Reset
+Pen"
+
 [node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
 
 [node name="Left" type="CollisionShape2D" parent="Walls"]

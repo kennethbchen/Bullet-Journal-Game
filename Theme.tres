@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cvsyfq7gi1e3j"]
+
+[ext_resource type="FontFile" uid="uid://v87cktuq3yg7" path="res://Font/Habbo.ttf" id="1_gnp7r"]
+
+[resource]
+default_font = ExtResource("1_gnp7r")
