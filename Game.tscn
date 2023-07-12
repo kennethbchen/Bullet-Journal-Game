@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=17 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_46845"]
 [ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="1_d48b6"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="6_vwfgl"]
 [ext_resource type="PackedScene" uid="uid://ctyv33hrjhojx" path="res://Scenes/Projectile.tscn" id="8_i0f18"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="10_bdcdg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wrkl"]
 
 [sub_resource type="Resource" id="Resource_2w8dj"]
 script = ExtResource("5_0ne8o")
@@ -50,6 +52,31 @@ radius = 3.0
 
 [node name="GameLevel" type="Node2D"]
 metadata/_edit_vertical_guides_ = [1.0]
+
+[node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(56, 144)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+one_way_collision = true
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144, 257)
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+one_way_collision = true
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(233, 144)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+one_way_collision = true
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144, 28)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+one_way_collision = true
 
 [node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("source_line_parent", "drawing_line_parent")]
 script = ExtResource("1_d48b6")
@@ -92,56 +119,56 @@ steps = Array[ExtResource("5_0ne8o")]([SubResource("Resource_2w8dj"), SubResourc
 [node name="ProjectileParent" type="Node" parent="ProjectileGenerator"]
 
 [node name="SpawnPointGenerator" type="Node2D" parent="ProjectileGenerator"]
-position = Vector2(61, -18)
+position = Vector2(68, -18)
 script = ExtResource("6_vwfgl")
 enabled = true
 point_count = 4
 init_rotation = 90.0
-position_offset = Vector2(46, 0)
+position_offset = Vector2(42, 0)
 
 [node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
 rotation = 1.5708
 
 [node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(46, 0)
+position = Vector2(42, 0)
 rotation = 1.5708
 
 [node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(92, 0)
+position = Vector2(84, 0)
 rotation = 1.5708
 
 [node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(138, 0)
+position = Vector2(126, 0)
 rotation = 1.5708
 
 [node name="SpawnPointGenerator2" type="Node2D" parent="ProjectileGenerator"]
-position = Vector2(61, -18)
+position = Vector2(68, -18)
 script = ExtResource("6_vwfgl")
 enabled = true
 point_count = 4
 init_position = Vector2(23, 0)
 init_rotation = 90.0
-position_offset = Vector2(46, 0)
+position_offset = Vector2(42, 0)
 
 [node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
 position = Vector2(23, 0)
 rotation = 1.5708
 
 [node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(69, 0)
+position = Vector2(65, 0)
 rotation = 1.5708
 
 [node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(115, 0)
+position = Vector2(107, 0)
 rotation = 1.5708
 
 [node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(161, 0)
+position = Vector2(149, 0)
 rotation = 1.5708
 
 [node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("line_parent")]
 z_index = 3
-position = Vector2(203, 238)
+position = Vector2(210, 246)
 motion_mode = 1
 script = ExtResource("1_46845")
 line_drawer_scene = ExtResource("2_uwqo8")

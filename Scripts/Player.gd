@@ -9,6 +9,7 @@ enum STATE {IDLE, GRABBED, HITSTUN}
 @export_group("Movement")
 @export var max_grab_distance: float = 10
 @export var max_speed: float = 80
+@export var grab_bounds: Rect2
 
 
 @export_group("Hitstun")
@@ -47,7 +48,11 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity)
 		
 		if collision != null:
-			_change_to_hitstun(collision, delta)
+			
+			if collision.get_collider().get_groups().has("Wall"):
+				_change_to_idle()
+			else:
+				_change_to_hitstun(collision, delta)
 			
 	if current_state == STATE.HITSTUN:
 		
@@ -67,6 +72,9 @@ func _change_to_idle():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 	pen_sprite.modulate = Color(1,1,1,1)
+	
+	_stop_drawing()
+	
 
 func _change_to_grabbed():
 	current_state = STATE.GRABBED
