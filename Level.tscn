@@ -213,7 +213,6 @@ metadata/_edit_lock_ = true
 
 [node name="ProjectileGenerator" type="Node2D" parent="." node_paths=PackedStringArray("projectile_parent")]
 script = ExtResource("3_ep5s1")
-run_forever = true
 projectile_parent = NodePath("ProjectileParent")
 steps = Array[ExtResource("5_tsiwy")]([SubResource("Resource_2w8dj"), SubResource("Resource_6wutw")])
 
@@ -300,9 +299,11 @@ metadata/_edit_lock_ = true
 
 [connection signal="game_ended" from="." to="ProjectileGenerator" method="_on_game_ended"]
 [connection signal="game_ended" from="." to="Player" method="_on_game_ended"]
+[connection signal="game_started" from="." to="ProjectileGenerator" method="_on_game_started"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/RestartLevelButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pen_grabbed" from="Player" to="." method="_on_pen_grabbed"]
 [connection signal="left_mouse_pressed" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_pressed"]
 [connection signal="left_mouse_released" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_released"]

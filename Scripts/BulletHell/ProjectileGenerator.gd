@@ -18,13 +18,13 @@ func _ready():
 func _process(delta):
 	
 	if run_forever and not running:
-		start()
+		run()
 
 func stop():
 	should_stop = true
 	run_forever = false
 	
-func start():
+func run():
 	
 	if running: return
 	
@@ -81,6 +81,10 @@ func start():
 			await get_tree().create_timer(step.transition_delay).timeout
 	
 	running = false
+
+func _on_game_started():
+	await get_tree().create_timer(2).timeout
+	run_forever = true
 	
 func _on_game_ended():
 	stop()
