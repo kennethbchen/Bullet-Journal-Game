@@ -82,3 +82,5 @@ func start():
 	
 	running = false
 	
+func _on_game_ended():
+	stop()

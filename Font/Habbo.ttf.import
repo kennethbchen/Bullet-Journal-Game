@@ -2,7 +2,7 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://v87cktuq3yg7"
+uid="uid://dxo1ge4y7f64q"
 path="res://.godot/imported/Habbo.ttf-3e95855acb9a94b4552b83add1472b79.fontdata"
 
 [deps]
@@ -20,8 +20,8 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
-hinting=0
-subpixel_positioning=3
+hinting=1
+subpixel_positioning=0
 oversampling=0.0
 Fallbacks=null
 fallbacks=[]
@@ -31,7 +31,8 @@ preload=[{
 "chars": [],
 "glyphs": [],
 "name": "New Configuration",
-"size": Vector2i(16, 0)
+"size": Vector2i(16, 0),
+"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}

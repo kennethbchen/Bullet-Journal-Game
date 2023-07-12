@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum STATE {IDLE, GRABBED, HITSTUN}
+enum STATE {DISABLED, IDLE, GRABBED, HITSTUN}
 
 @export_group("Nodes")
 @export var line_drawer_scene: PackedScene
@@ -22,6 +22,8 @@ enum STATE {IDLE, GRABBED, HITSTUN}
 var current_state: STATE = STATE.IDLE
 
 var current_line_drawer: LineDrawer
+
+signal pen_grabbed()
 
 func _ready():
 	
@@ -64,7 +66,10 @@ func _physics_process(delta):
 			
 			_stop_drawing()
 			_change_to_idle()
-		
+
+func _change_to_disabled():
+	_change_to_idle()
+	current_state = STATE.DISABLED
 
 func _change_to_idle():
 	current_state = STATE.IDLE
@@ -81,6 +86,8 @@ func _change_to_grabbed():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
 	pen_sprite.modulate = Color(1,1,1,0.5)
+	
+	pen_grabbed.emit()
 
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	current_state = STATE.HITSTUN
@@ -131,3 +138,6 @@ func _on_left_mouse_pressed():
 func _on_left_mouse_released():
 	if current_state == STATE.GRABBED:
 		_stop_drawing()
+
+func _on_game_ended():
+	_change_to_disabled()
