@@ -65,18 +65,23 @@ func _change_to_idle():
 	current_state = STATE.IDLE
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	pen_sprite.modulate = Color(1,1,1,1)
 
 func _change_to_grabbed():
 	current_state = STATE.GRABBED
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
+	pen_sprite.modulate = Color(1,1,1,0.5)
 
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
+	current_state = STATE.HITSTUN
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	_start_drawing()
+	pen_sprite.modulate = Color(1,1,1,0.5)
 	
-	current_state = STATE.HITSTUN
+	_start_drawing()
 	
 	velocity = collision.get_normal() * delta * hitstun_speed
 	

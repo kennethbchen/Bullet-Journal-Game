@@ -146,6 +146,7 @@ motion_mode = 1
 script = ExtResource("1_46845")
 line_drawer_scene = ExtResource("2_uwqo8")
 line_parent = NodePath("../Drawings/PlayerLineParent")
+max_grab_distance = 8.0
 
 [node name="HurtboxSprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("1_jw0vf")
