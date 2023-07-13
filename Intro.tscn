@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5va78u7xgsph"]
+
+[ext_resource type="Script" path="res://Scripts/Intro.gd" id="1_b6rwu"]
+[ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Level.tscn" id="2_h8as7"]
+[ext_resource type="PackedScene" uid="uid://cwmt167siurh6" path="res://Scenes/Player.tscn" id="3_jw2w2"]
+[ext_resource type="Texture2D" uid="uid://cebiahgui0km6" path="res://Sprites/IntroBackground.png" id="14_kklfx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wrkl"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_b6rwu")
+next_scene = ExtResource("2_h8as7")
+metadata/_edit_vertical_guides_ = [1.0]
+
+[node name="GameUI" type="CanvasLayer" parent="."]
+
+[node name="DoneButton" type="Button" parent="GameUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -23.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Done!"
+
+[node name="RestartButton" type="Button" parent="GameUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Restart"
+
+[node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
+metadata/_edit_lock_ = true
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(56, 144)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144, 252)
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(233, 144)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(144, 4)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_0wrkl")
+
+[node name="Drawings" type="Node" parent="."]
+
+[node name="PlayerLineParent" type="Node" parent="Drawings"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("line_parent") instance=ExtResource("3_jw2w2")]
+line_parent = NodePath("../Drawings/PlayerLineParent")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4
+position = Vector2(144, 144)
+texture = ExtResource("14_kklfx")
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]

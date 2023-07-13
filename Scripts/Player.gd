@@ -28,7 +28,6 @@ signal pen_grabbed()
 func _ready():
 	
 	assert(line_drawer_scene != null)
-	assert(line_parent != null)
 	
 	_change_to_idle()
 
