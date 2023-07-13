@@ -1,5 +1,7 @@
 extends Node
 
+enum DRAWING_GRADE {SS, S, A, B, C}
+
 @export var source_line_parent: Node
 
 @export var drawing_line_parent: Node
@@ -12,7 +14,41 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_accept"):
-		calculate_error()
+		print(grade_accuracy(), " ", grade_strokes())
+
+func grade_strokes():
+	
+	var strokes = drawing_line_parent.get_children().size()
+	
+	if strokes == 1:
+		return "SS"
+	elif strokes == 2:
+		return "S"
+	elif strokes < 8:
+		return "A"
+	elif strokes < 15:
+		return "B"
+	elif strokes < 25:
+		return "C"
+	else:
+		return "D"
+
+func grade_accuracy():
+	var avg_err = calculate_error()
+	
+	if avg_err < 0.5:
+		return "SS"
+	elif avg_err < 0.75:
+		return "S"
+	elif avg_err < 1:
+		return "A"
+	elif avg_err < 1.5:
+		return "B"
+	elif avg_err < 2.5:
+		return "C"
+	else:
+		return "D"
+		
 
 func calculate_error():
 	
