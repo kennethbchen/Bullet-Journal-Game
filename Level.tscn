@@ -25,7 +25,7 @@ aim_type = 0
 position_offset = Vector2(0, 0)
 rotation_offset_degrees = 0.0
 spawn_delay = 0.0
-transition_delay = 1.0
+transition_delay = 0.55
 spawn_cycles = 1
 step_cycles = 1
 sound_effect_name = ""
@@ -41,7 +41,7 @@ aim_type = 0
 position_offset = Vector2(0, 0)
 rotation_offset_degrees = 0.0
 spawn_delay = 0.0
-transition_delay = 1.0
+transition_delay = 0.55
 spawn_cycles = 1
 step_cycles = 1
 sound_effect_name = ""
@@ -50,6 +50,7 @@ sound_type = 0
 [node name="Level" type="Node2D"]
 script = ExtResource("1_fwlpn")
 metadata/_edit_vertical_guides_ = [1.0]
+metadata/_edit_horizontal_guides_ = []
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 layer = 2
