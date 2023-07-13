@@ -276,6 +276,7 @@ metadata/_edit_lock_ = true
 
 [connection signal="game_ended" from="." to="DrawingGrader" method="_on_game_ended"]
 [connection signal="game_ended" from="." to="ProjectileGenerator" method="_on_game_ended"]
+[connection signal="game_ended" from="." to="Player" method="_on_game_ended"]
 [connection signal="game_started" from="." to="ProjectileGenerator" method="_on_game_started"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/RestartLevelButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
