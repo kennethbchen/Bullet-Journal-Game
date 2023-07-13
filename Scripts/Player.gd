@@ -18,12 +18,14 @@ enum STATE {DISABLED, IDLE, GRABBED, HITSTUN}
 
 @onready var pen_sprite: Sprite2D = $PenSprite
 @onready var mouse_input: MouseInputHandler = $MouseInputHandler
+@onready var pen_tooltip: Label = $PenTooltip
 
 var current_state: STATE = STATE.IDLE
 
 var current_line_drawer: LineDrawer
 
 signal pen_grabbed()
+signal pen_dropped()
 
 func _ready():
 	
@@ -79,6 +81,8 @@ func _change_to_idle():
 	
 	_stop_drawing()
 	
+	pen_tooltip.show()
+	
 
 func _change_to_grabbed():
 	current_state = STATE.GRABBED
@@ -87,6 +91,8 @@ func _change_to_grabbed():
 	pen_sprite.modulate = Color(1,1,1,0.5)
 	
 	pen_grabbed.emit()
+	
+	pen_tooltip.hide()
 
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	current_state = STATE.HITSTUN
