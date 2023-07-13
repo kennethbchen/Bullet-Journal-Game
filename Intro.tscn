@@ -15,6 +15,50 @@ script = ExtResource("1_b6rwu")
 next_scene = ExtResource("2_h8as7")
 metadata/_edit_vertical_guides_ = [1.0]
 
+[node name="CreditsUI" type="CanvasLayer" parent="."]
+
+[node name="Credits" type="Control" parent="CreditsUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CreditsUI/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 30.0
+offset_right = -21.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsUI/Credits/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CreditsUI/Credits/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 4.0
+text = "The credits go here but they don't exist yet so..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CloseCreditsButton" type="Button" parent="CreditsUI/Credits/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Close"
+
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -114,6 +158,17 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "Restart"
 
+[node name="CreditsButton" type="Button" parent="GameUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 25.0
+offset_right = -2.0
+offset_bottom = 46.0
+grow_horizontal = 0
+text = "Credits"
+
 [node name="ControlsLabel" type="Label" parent="GameUI"]
 offset_left = 71.0
 offset_top = 11.0
@@ -169,9 +224,11 @@ texture = ExtResource("14_kklfx")
 metadata/_edit_lock_ = true
 
 [connection signal="game_ended" from="." to="Player" method="_on_game_ended"]
+[connection signal="pressed" from="CreditsUI/Credits/Panel/VBoxContainer/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/RestartLevelButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="GameUI/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="line_drawn" from="Player" to="." method="_on_line_drawn"]
 [connection signal="pen_grabbed" from="Player" to="." method="_on_pen_grabbed"]
