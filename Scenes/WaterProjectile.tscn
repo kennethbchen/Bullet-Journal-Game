@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckt2ug7d6uwrw"]
+
+[ext_resource type="PackedScene" uid="uid://ctyv33hrjhojx" path="res://Scenes/Projectile.tscn" id="1_n4yre"]
+[ext_resource type="Texture2D" uid="uid://cd22cbeekv4ak" path="res://Sprites/WaterProjectile.png" id="2_dckjv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3rgup"]
+radius = 5.0
+
+[node name="WaterProjectile" instance=ExtResource("1_n4yre")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-2, 0)
+rotation = -1.5708
+texture = ExtResource("2_dckjv")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_3rgup")

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_fwlpn"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_hhy5b"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="3_ep5s1"]
-[ext_resource type="PackedScene" uid="uid://ctyv33hrjhojx" path="res://Scenes/Projectile.tscn" id="4_s4ysu"]
+[ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="5_44i16"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="5_tsiwy"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="6_qo587"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="7_1325q"]
@@ -22,7 +22,7 @@
 script = ExtResource("5_tsiwy")
 skip = false
 spawn_position_parent_path = NodePath("SpawnPointGenerator")
-projectile_scene = ExtResource("4_s4ysu")
+projectile_scene = ExtResource("5_44i16")
 aim_rotation_source_path = NodePath("")
 aim_type = 0
 position_offset = Vector2(0, 0)
@@ -38,7 +38,7 @@ sound_type = 0
 script = ExtResource("5_tsiwy")
 skip = false
 spawn_position_parent_path = NodePath("SpawnPointGenerator2")
-projectile_scene = ExtResource("4_s4ysu")
+projectile_scene = ExtResource("5_44i16")
 aim_rotation_source_path = NodePath("")
 aim_type = 0
 position_offset = Vector2(0, 0)
@@ -155,25 +155,30 @@ grow_horizontal = 0
 text = "Restart"
 
 [node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
+metadata/_edit_lock_ = true
 
 [node name="Left" type="CollisionShape2D" parent="Walls"]
 position = Vector2(56, 144)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_0wrkl")
+metadata/_edit_lock_ = true
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2(144, 257)
 shape = SubResource("WorldBoundaryShape2D_0wrkl")
+metadata/_edit_lock_ = true
 
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 position = Vector2(233, 144)
 rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_0wrkl")
+metadata/_edit_lock_ = true
 
 [node name="Top" type="CollisionShape2D" parent="Walls"]
 position = Vector2(144, 28)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_0wrkl")
+metadata/_edit_lock_ = true
 
 [node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("source_line_parent", "drawing_line_parent")]
 script = ExtResource("1_c2la4")
