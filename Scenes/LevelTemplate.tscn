@@ -1,25 +1,24 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=14 format=3 uid="uid://cgfnwtxbl14yp"]
 
-[ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="1_c2la4"]
-[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_fwlpn"]
-[ext_resource type="Script" path="res://Scripts/ResultsText.gd" id="2_2jxy5"]
-[ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_hhy5b"]
-[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="3_ep5s1"]
-[ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="5_44i16"]
-[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="5_tsiwy"]
-[ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="6_qo587"]
-[ext_resource type="PackedScene" uid="uid://cwmt167siurh6" path="res://Scenes/Player.tscn" id="9_ew3a2"]
-[ext_resource type="Texture2D" uid="uid://d18tb4gbtrcct" path="res://Sprites/Background.png" id="12_ffcdh"]
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_c0o5c"]
+[ext_resource type="Script" path="res://Scripts/ResultsText.gd" id="2_s0ige"]
+[ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="3_pjotv"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="4_spvna"]
+[ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="5_1lsps"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="6_fk5yi"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="7_h32k8"]
+[ext_resource type="PackedScene" uid="uid://cwmt167siurh6" path="res://Scenes/Player.tscn" id="8_semi7"]
+[ext_resource type="Texture2D" uid="uid://d18tb4gbtrcct" path="res://Sprites/Background.png" id="9_io5vt"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a0bh2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wrkl"]
 
 [sub_resource type="Resource" id="Resource_2w8dj"]
-script = ExtResource("5_tsiwy")
+script = ExtResource("6_fk5yi")
 skip = false
 spawn_position_parent_path = NodePath("SpawnPointGenerator")
-projectile_scene = ExtResource("5_44i16")
+projectile_scene = ExtResource("5_1lsps")
 aim_rotation_source_path = NodePath("")
 aim_type = 0
 position_offset = Vector2(0, 0)
@@ -32,10 +31,10 @@ sound_effect_name = ""
 sound_type = 0
 
 [sub_resource type="Resource" id="Resource_6wutw"]
-script = ExtResource("5_tsiwy")
+script = ExtResource("6_fk5yi")
 skip = false
 spawn_position_parent_path = NodePath("SpawnPointGenerator2")
-projectile_scene = ExtResource("5_44i16")
+projectile_scene = ExtResource("5_1lsps")
 aim_rotation_source_path = NodePath("")
 aim_type = 0
 position_offset = Vector2(0, 0)
@@ -48,7 +47,7 @@ sound_effect_name = ""
 sound_type = 0
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_fwlpn")
+script = ExtResource("1_c0o5c")
 metadata/_edit_vertical_guides_ = [1.0]
 metadata/_edit_horizontal_guides_ = []
 
@@ -108,7 +107,7 @@ size_flags_stretch_ratio = 2.92
 text = "The Results go here but they don't exist yet"
 horizontal_alignment = 1
 autowrap_mode = 3
-script = ExtResource("2_2jxy5")
+script = ExtResource("2_s0ige")
 
 [node name="RestartLevelButton" type="Button" parent="ResultsUI/ResultsPanel/VBoxContainer"]
 layout_mode = 2
@@ -175,52 +174,24 @@ rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_0wrkl")
 metadata/_edit_lock_ = true
 
-[node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("source_line_parent", "drawing_line_parent")]
-script = ExtResource("1_c2la4")
-source_line_parent = NodePath("../Drawings/FlowerDrawingGuide")
+[node name="DrawingGrader" type="Node" parent="." node_paths=PackedStringArray("drawing_line_parent")]
+script = ExtResource("3_pjotv")
 drawing_line_parent = NodePath("../Drawings/PlayerLineParent")
 
 [node name="Drawings" type="Node" parent="."]
 
-[node name="TestDrawingGuide" type="Node" parent="Drawings"]
-
-[node name="GuideLine" type="Line2D" parent="Drawings/TestDrawingGuide"]
-visible = false
-top_level = true
-points = PackedVector2Array(190, 59, 205, 102, 201, 146)
-width = 2.0
-default_color = Color(0.447059, 0.447059, 0.447059, 1)
-
-[node name="FlowerDrawingGuide" type="Node" parent="Drawings"]
-
-[node name="GuideLine" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("2_hhy5b")]
-points = PackedVector2Array(118, 105, 123, 93, 136, 86, 151, 89, 159, 102, 155, 119, 139, 129, 122, 121, 118, 105)
-metadata/_edit_lock_ = true
-
-[node name="GuideLine2" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("2_hhy5b")]
-points = PackedVector2Array(123, 93, 112, 83, 108, 68, 112, 58, 124, 61, 133, 72, 136, 86, 145, 72, 154, 63, 165, 62, 167, 72, 163, 85, 153, 94, 170, 89, 183, 86, 188, 93, 191, 102, 188, 109, 178, 113, 166, 114, 157, 112, 165, 125, 171, 138, 167, 147, 158, 150, 148, 146, 145, 139, 140, 129, 134, 140, 128, 146, 120, 151, 109, 153, 106, 140, 112, 129, 121, 121, 107, 119, 96, 117, 90, 112, 88, 104, 92, 97, 101, 93, 112, 93, 123, 93)
-metadata/_edit_lock_ = true
-
-[node name="GuideLine3" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("2_hhy5b")]
-points = PackedVector2Array(144, 137, 150, 148, 155, 162, 163, 156, 172, 152, 181, 151, 186, 155, 186, 162, 182, 169, 174, 172, 167, 171, 156, 169, 157, 178, 156, 189, 153, 205, 147, 222, 139, 234, 127, 234, 136, 221, 140, 211, 143, 197, 132, 196, 122, 194, 117, 189, 115, 182, 119, 177, 125, 176, 132, 177, 139, 181, 144, 190, 146, 175, 144, 163, 140, 150, 134, 139)
-metadata/_edit_lock_ = true
-
-[node name="GuideLine4" parent="Drawings/FlowerDrawingGuide" instance=ExtResource("2_hhy5b")]
-points = PackedVector2Array(133, 224, 121, 224, 111, 227, 104, 231, 100, 238, 107, 244, 121, 248, 140, 249, 155, 249, 167, 247, 177, 245, 182, 234, 177, 229, 166, 226, 156, 225, 146, 225)
-metadata/_edit_lock_ = true
-
 [node name="PlayerLineParent" type="Node" parent="Drawings"]
 
 [node name="ProjectileGenerator" type="Node2D" parent="." node_paths=PackedStringArray("projectile_parent")]
-script = ExtResource("3_ep5s1")
+script = ExtResource("4_spvna")
 projectile_parent = NodePath("ProjectileParent")
-steps = Array[ExtResource("5_tsiwy")]([SubResource("Resource_2w8dj"), SubResource("Resource_6wutw")])
+steps = Array[ExtResource("6_fk5yi")]([SubResource("Resource_2w8dj"), SubResource("Resource_6wutw")])
 
 [node name="ProjectileParent" type="Node" parent="ProjectileGenerator"]
 
 [node name="SpawnPointGenerator" type="Node2D" parent="ProjectileGenerator"]
 position = Vector2(68, -18)
-script = ExtResource("6_qo587")
+script = ExtResource("7_h32k8")
 enabled = true
 point_count = 4
 init_rotation = 90.0
@@ -243,7 +214,7 @@ rotation = 1.5708
 
 [node name="SpawnPointGenerator2" type="Node2D" parent="ProjectileGenerator"]
 position = Vector2(68, -18)
-script = ExtResource("6_qo587")
+script = ExtResource("7_h32k8")
 enabled = true
 point_count = 4
 init_position = Vector2(23, 0)
@@ -266,13 +237,13 @@ rotation = 1.5708
 position = Vector2(149, 0)
 rotation = 1.5708
 
-[node name="Player" parent="." node_paths=PackedStringArray("line_parent") instance=ExtResource("9_ew3a2")]
+[node name="Player" parent="." node_paths=PackedStringArray("line_parent") instance=ExtResource("8_semi7")]
 line_parent = NodePath("../Drawings/PlayerLineParent")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4
 position = Vector2(144, 144)
-texture = ExtResource("12_ffcdh")
+texture = ExtResource("9_io5vt")
 metadata/_edit_lock_ = true
 
 [connection signal="game_ended" from="." to="DrawingGrader" method="_on_game_ended"]

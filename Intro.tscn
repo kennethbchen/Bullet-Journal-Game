@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5va78u7xgsph"]
+[gd_scene load_steps=8 format=3 uid="uid://4pdxhiv41q7n"]
 
 [ext_resource type="Script" path="res://Scripts/Intro.gd" id="1_b6rwu"]
-[ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Level.tscn" id="2_h8as7"]
+[ext_resource type="PackedScene" uid="uid://b1uypuvdv7qdv" path="res://Scenes/Levels/Level1.tscn" id="2_2sftt"]
 [ext_resource type="PackedScene" uid="uid://cwmt167siurh6" path="res://Scenes/Player.tscn" id="3_jw2w2"]
 [ext_resource type="Script" path="res://Scripts/ResultsText.gd" id="3_xam3p"]
 [ext_resource type="Texture2D" uid="uid://cebiahgui0km6" path="res://Sprites/IntroBackground.png" id="14_kklfx"]
@@ -12,7 +12,7 @@
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_b6rwu")
-next_scene = ExtResource("2_h8as7")
+next_scene = ExtResource("2_2sftt")
 metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="CreditsUI" type="CanvasLayer" parent="."]
