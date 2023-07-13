@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Scenes/LevelTemplate.tscn" id="1_dj5jr"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_rx0er"]
 
-[node name="Level" instance=ExtResource("1_dj5jr")]
+[node name="Level1" instance=ExtResource("1_dj5jr")]
 
 [node name="DrawingGrader" parent="." index="3" node_paths=PackedStringArray("source_line_parent")]
 source_line_parent = NodePath("../Drawings/FlowerDrawingGuide")
