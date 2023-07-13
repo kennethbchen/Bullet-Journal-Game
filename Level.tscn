@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=20 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/DrawingGrader.gd" id="1_c2la4"]
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_fwlpn"]
+[ext_resource type="Script" path="res://ResultsText.gd" id="2_128v5"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_hhy5b"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="3_ep5s1"]
 [ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="5_44i16"]
@@ -59,7 +60,6 @@ metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="Background" type="TextureRect" parent="ResultsUI"]
 modulate = Color(0, 0, 0, 0.490196)
@@ -114,6 +114,7 @@ size_flags_stretch_ratio = 2.92
 text = "The Results go here but they don't exist yet"
 horizontal_alignment = 1
 autowrap_mode = 3
+script = ExtResource("2_128v5")
 
 [node name="RestartLevelButton" type="Button" parent="ResultsUI/ResultsPanel/VBoxContainer"]
 layout_mode = 2
@@ -302,6 +303,7 @@ position = Vector2(144, 144)
 texture = ExtResource("12_ffcdh")
 metadata/_edit_lock_ = true
 
+[connection signal="game_ended" from="." to="DrawingGrader" method="_on_game_ended"]
 [connection signal="game_ended" from="." to="ProjectileGenerator" method="_on_game_ended"]
 [connection signal="game_ended" from="." to="Player" method="_on_game_ended"]
 [connection signal="game_started" from="." to="ProjectileGenerator" method="_on_game_started"]
@@ -309,6 +311,7 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="ResultsUI/ResultsPanel/VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="results_created" from="DrawingGrader" to="ResultsUI/ResultsPanel/VBoxContainer/Results" method="_on_results_created"]
 [connection signal="pen_grabbed" from="Player" to="." method="_on_pen_grabbed"]
 [connection signal="left_mouse_pressed" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_pressed"]
 [connection signal="left_mouse_released" from="Player/MouseInputHandler" to="Player" method="_on_left_mouse_released"]

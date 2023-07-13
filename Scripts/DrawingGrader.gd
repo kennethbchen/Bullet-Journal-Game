@@ -1,22 +1,31 @@
 extends Node
 
-enum DRAWING_GRADE {SS, S, A, B, C}
-
 @export var source_line_parent: Node
 
 @export var drawing_line_parent: Node
+
+signal results_created(results: String)
 
 func _ready():
 	
 	assert(source_line_parent is Node)
 	assert(drawing_line_parent is Node)
+
+func create_results_text():
 	
-
-func _unhandled_input(event):
-	if event.is_action_pressed("ui_accept"):
-		print(grade_accuracy(), " ", grade_strokes())
-
-func grade_strokes():
+	var acc_score: = ""
+	var stroke_score = ""
+	if drawing_line_parent.get_children().size() < 1:
+		acc_score = "F"
+		stroke_score = "F"
+	else:
+		acc_score = _grade_accuracy()
+		stroke_score = _grade_strokes()
+		
+	
+	return "Accuracy: " + str(acc_score) + "\n Strokes: " + str(stroke_score)
+	
+func _grade_strokes():
 	
 	var strokes = drawing_line_parent.get_children().size()
 	
@@ -33,8 +42,8 @@ func grade_strokes():
 	else:
 		return "D"
 
-func grade_accuracy():
-	var avg_err = calculate_error()
+func _grade_accuracy():
+	var avg_err = _calculate_error()
 	
 	if avg_err < 0.5:
 		return "SS"
@@ -50,7 +59,7 @@ func grade_accuracy():
 		return "D"
 		
 
-func calculate_error():
+func _calculate_error():
 	
 	var point_errors = []
 	
@@ -96,6 +105,7 @@ func calculate_error():
 	
 	avg_error /= point_errors.size()
 	
-	print(avg_error)
-	
 	return avg_error
+
+func _on_game_ended() -> void:
+	results_created.emit(create_results_text())
