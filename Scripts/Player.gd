@@ -25,7 +25,8 @@ var current_state: STATE = STATE.IDLE
 var current_line_drawer: LineDrawer
 
 signal pen_grabbed()
-signal pen_dropped()
+
+signal line_drawn()
 
 func _ready():
 	
@@ -135,6 +136,8 @@ func _stop_drawing():
 	current_line_drawer.set_script(null)
 	current_line_drawer.reparent(line_parent)
 	current_line_drawer = null
+	
+	line_drawn.emit()
 
 func _on_left_mouse_pressed():
 	if current_state == STATE.GRABBED:

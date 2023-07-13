@@ -39,6 +39,25 @@ offset_bottom = 23.0
 grow_horizontal = 0
 text = "Restart"
 
+[node name="ControlsLabel" type="Label" parent="GameUI"]
+offset_left = 71.0
+offset_top = 11.0
+offset_right = 219.0
+offset_bottom = 75.0
+text = "Controls:
+Mouse - Pick up / Move Pen
+Hold Left Click - Draw Lines
+Sign Your Name!"
+
+[node name="DoneLabel" type="Label" parent="GameUI"]
+offset_left = 30.0
+offset_top = 271.0
+offset_right = 238.0
+offset_bottom = 287.0
+text = "Click Done when you're done drawing! >"
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Walls" type="StaticBody2D" parent="." groups=["Wall"]]
 metadata/_edit_lock_ = true
 
@@ -76,3 +95,5 @@ metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="GameUI/DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="pressed" from="GameUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="line_drawn" from="Player" to="." method="_on_line_drawn"]
+[connection signal="pen_grabbed" from="Player" to="." method="_on_pen_grabbed"]
