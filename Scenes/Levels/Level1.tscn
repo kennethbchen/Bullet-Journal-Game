@@ -116,3 +116,6 @@ rotation = 1.5708
 [node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2" index="3"]
 position = Vector2(149, 0)
 rotation = 1.5708
+
+[node name="Marker2D" type="Marker2D" parent="." index="8"]
+position = Vector2(232, 255)

@@ -9,8 +9,6 @@ enum STATE {DISABLED, IDLE, GRABBED, HITSTUN}
 @export_group("Movement")
 @export var max_grab_distance: float = 10
 @export var max_speed: float = 80
-@export var grab_bounds: Rect2
-
 
 @export_group("Hitstun")
 @export var hitstun_speed: float = 200
@@ -20,13 +18,16 @@ enum STATE {DISABLED, IDLE, GRABBED, HITSTUN}
 @onready var mouse_input: MouseInputHandler = $MouseInputHandler
 @onready var pen_tooltip: Label = $PenTooltip
 
+@onready var raycast: RayCast2D = $RayCast2D
+
 var current_state: STATE = STATE.IDLE
 
 var current_line_drawer: LineDrawer
 
 signal pen_grabbed()
-
 signal line_drawn()
+
+signal sound_requested(sound_name: String)
 
 func _ready():
 	
@@ -38,13 +39,26 @@ func _process(delta):
 	
 	if current_state == STATE.IDLE:
 		if position.distance_to(mouse_input.get_global_mouse_position()) < max_grab_distance:
-					_change_to_grabbed()
+			
+			# Don't grab if going to the mouse would put you inside of a wall
+			var ray_target_position = (mouse_input.get_global_mouse_position() - global_position)
+			raycast.target_position = ray_target_position + ray_target_position.normalized() * 16
+			raycast.force_raycast_update()
+			
+			var collider = raycast.get_collider()
+			
+			if collider != null:
+				return
+			
+			
+			_change_to_grabbed()
 
 func _physics_process(delta):
 	
 	if current_state == STATE.GRABBED:
 		
 		if position.distance_to(mouse_input.get_global_mouse_position()) > 0.1:
+			
 			velocity = (mouse_input.get_global_mouse_position() - position) * delta * max_speed
 		else:
 			velocity = Vector2.ZERO
@@ -94,6 +108,8 @@ func _change_to_grabbed():
 	pen_grabbed.emit()
 	
 	pen_tooltip.hide()
+	
+	sound_requested.emit("grab")
 
 func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	current_state = STATE.HITSTUN
@@ -105,6 +121,8 @@ func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	_start_drawing()
 	
 	velocity = collision.get_normal() * delta * hitstun_speed
+	
+	sound_requested.emit("hurt")
 	
 func _start_drawing():
 	
