@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf7rpplgu6eql"]
+
+[ext_resource type="PackedScene" uid="uid://ctyv33hrjhojx" path="res://Scenes/Projectile.tscn" id="1_sajhe"]
+[ext_resource type="Texture2D" uid="uid://crgxv1o3wub14" path="res://Sprites/SunProjectile.png" id="2_0hri8"]
+
+[node name="Projectile" instance=ExtResource("1_sajhe")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2, 0)
+rotation = -1.5708
+texture = ExtResource("2_0hri8")
