@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgfnwtxbl14yp"]
+[gd_scene load_steps=13 format=3 uid="uid://cgfnwtxbl14yp"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_c0o5c"]
 [ext_resource type="Script" path="res://Scripts/ResultsText.gd" id="2_s0ige"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGenerator.gd" id="4_spvna"]
 [ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="5_1lsps"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="6_fk5yi"]
-[ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="7_h32k8"]
 [ext_resource type="PackedScene" uid="uid://cwmt167siurh6" path="res://Scenes/Player.tscn" id="8_semi7"]
 [ext_resource type="Texture2D" uid="uid://d18tb4gbtrcct" path="res://Sprites/Background.png" id="9_io5vt"]
 
@@ -188,54 +187,6 @@ projectile_parent = NodePath("ProjectileParent")
 steps = Array[ExtResource("6_fk5yi")]([SubResource("Resource_2w8dj"), SubResource("Resource_6wutw")])
 
 [node name="ProjectileParent" type="Node" parent="ProjectileGenerator"]
-
-[node name="SpawnPointGenerator" type="Node2D" parent="ProjectileGenerator"]
-position = Vector2(68, -18)
-script = ExtResource("7_h32k8")
-enabled = true
-point_count = 4
-init_rotation = 90.0
-position_offset = Vector2(42, 0)
-
-[node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-rotation = 1.5708
-
-[node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(42, 0)
-rotation = 1.5708
-
-[node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(84, 0)
-rotation = 1.5708
-
-[node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator"]
-position = Vector2(126, 0)
-rotation = 1.5708
-
-[node name="SpawnPointGenerator2" type="Node2D" parent="ProjectileGenerator"]
-position = Vector2(68, -18)
-script = ExtResource("7_h32k8")
-enabled = true
-point_count = 4
-init_position = Vector2(23, 0)
-init_rotation = 90.0
-position_offset = Vector2(42, 0)
-
-[node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(23, 0)
-rotation = 1.5708
-
-[node name="1" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(65, 0)
-rotation = 1.5708
-
-[node name="2" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(107, 0)
-rotation = 1.5708
-
-[node name="3" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2"]
-position = Vector2(149, 0)
-rotation = 1.5708
 
 [node name="Player" parent="." node_paths=PackedStringArray("line_parent") instance=ExtResource("8_semi7")]
 line_parent = NodePath("../Drawings/PlayerLineParent")

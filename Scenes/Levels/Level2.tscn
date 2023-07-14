@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://drjxkh6wmbou4"]
+
+[ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Scenes/LevelTemplate.tscn" id="1_jm22h"]
+[ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_ixbb4"]
+[ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="3_fvcgk"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="4_q608g"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/SpawnPointGenerator.gd" id="5_vbqik"]
+
+[sub_resource type="Resource" id="Resource_f2o8u"]
+script = ExtResource("4_q608g")
+skip = false
+spawn_position_parent_path = NodePath("SpawnPointGenerator")
+projectile_scene = ExtResource("3_fvcgk")
+aim_rotation_source_path = NodePath("")
+aim_type = 0
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = 12.9
+spawn_delay = 0.0
+transition_delay = 0.08
+spawn_cycles = 1
+step_cycles = 10
+sound_effect_name = ""
+sound_type = 0
+
+[sub_resource type="Resource" id="Resource_wgqf2"]
+script = ExtResource("4_q608g")
+skip = false
+spawn_position_parent_path = NodePath("SpawnPointGenerator")
+projectile_scene = ExtResource("3_fvcgk")
+aim_rotation_source_path = NodePath("")
+aim_type = 0
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = -12.9
+spawn_delay = 0.0
+transition_delay = 0.08
+spawn_cycles = 1
+step_cycles = 10
+sound_effect_name = ""
+sound_type = 0
+
+[node name="Level2" instance=ExtResource("1_jm22h")]
+
+[node name="ResultsUI" parent="." index="0"]
+visible = false
+
+[node name="DrawingGrader" parent="." index="3" node_paths=PackedStringArray("source_line_parent")]
+source_line_parent = NodePath("../Drawings/Level2DrawingParent")
+
+[node name="Level2DrawingParent" type="Node" parent="Drawings" index="1"]
+
+[node name="GuideLine" parent="Drawings/Level2DrawingParent" index="0" instance=ExtResource("2_ixbb4")]
+points = PackedVector2Array(124, 228, 126, 198, 126, 165, 143, 164, 168, 164, 191, 165, 211, 164, 210, 183, 211, 205, 210, 228, 198, 228, 178, 228, 169, 228, 147, 226, 133, 228, 125, 228)
+
+[node name="GuideLine2" parent="Drawings/Level2DrawingParent" index="1" instance=ExtResource("2_ixbb4")]
+points = PackedVector2Array(168, 228, 168, 201, 186, 201, 186, 229)
+
+[node name="GuideLine3" parent="Drawings/Level2DrawingParent" index="2" instance=ExtResource("2_ixbb4")]
+points = PackedVector2Array(139, 184, 137, 204, 162, 203, 161, 183, 139, 184, 138, 195, 162, 193, 149, 194, 149, 184, 149, 204)
+
+[node name="GuideLine4" parent="Drawings/Level2DrawingParent" index="3" instance=ExtResource("2_ixbb4")]
+points = PackedVector2Array(120, 165, 137, 150, 153, 136, 168, 127, 185, 139, 200, 149, 216, 164, 199, 164, 167, 164, 120, 165)
+
+[node name="GuideLine5" parent="Drawings/Level2DrawingParent" index="4" instance=ExtResource("2_ixbb4")]
+points = PackedVector2Array(168, 228, 165, 237, 170, 243, 171, 251, 190, 251, 188, 241, 182, 236, 186, 228)
+
+[node name="GuideLine6" parent="Drawings/Level2DrawingParent" index="5" instance=ExtResource("2_ixbb4")]
+position = Vector2(1, 0)
+points = PackedVector2Array(78, 182, 70, 182, 66, 180, 65, 173, 69, 162, 77, 155, 73, 146, 81, 133, 89, 132, 98, 131, 107, 145, 104, 158, 111, 157, 115, 161, 117, 168, 114, 175, 105, 178, 108, 183, 108, 190, 95, 195, 98, 211, 99, 225, 99, 241, 83, 241, 86, 226, 87, 210, 87, 195, 81, 200, 74, 199, 69, 193, 69, 189, 72, 185, 78, 182)
+
+[node name="ProjectileGenerator" parent="." index="5"]
+steps = Array[ExtResource("4_q608g")]([SubResource("Resource_f2o8u"), SubResource("Resource_wgqf2")])
+
+[node name="SpawnPointGenerator" type="Node2D" parent="ProjectileGenerator" index="1"]
+position = Vector2(143, 10)
+script = ExtResource("5_vbqik")
+enabled = true
+point_count = 1
+init_rotation = 32.0
+rotation_offset_degrees = 12.944
+
+[node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator" index="0"]
+rotation = 0.558505

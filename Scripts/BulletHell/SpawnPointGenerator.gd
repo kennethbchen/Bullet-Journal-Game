@@ -9,6 +9,7 @@ extends Node2D
 @export var init_rotation: float = 0
 
 @export var position_offset: Vector2
+@export var rotation_offset_degrees: float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,11 +36,12 @@ func _process(delta):
 		
 		
 		var current_position_offset = init_position
+		var current_rotation_offset = init_rotation
 		for child in get_children():
 			
 			
 			child.position = current_position_offset
-			child.rotation_degrees = init_rotation
+			child.rotation_degrees = current_rotation_offset
 			
 			current_position_offset += position_offset
-		
+			current_rotation_offset += rotation_offset_degrees
