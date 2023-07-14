@@ -16,6 +16,7 @@ next_scene = ExtResource("2_2sftt")
 metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="CreditsUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Credits" type="Control" parent="CreditsUI"]
 layout_mode = 3
