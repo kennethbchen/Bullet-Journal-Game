@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://rul4x6ei2o3t"]
+[gd_scene load_steps=8 format=3 uid="uid://rul4x6ei2o3t"]
 
 [ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Scenes/LevelTemplate.tscn" id="1_bygxd"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_latum"]
+[ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="3_aocrb"]
+[ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="3_b7fjf"]
+[ext_resource type="Script" path="res://Scripts/AimSystem.gd" id="4_8foju"]
+
+[sub_resource type="Resource" id="Resource_lgf3y"]
+script = ExtResource("3_aocrb")
+skip = false
+spawn_position_parent_path = NodePath("LeftSpawnPoint")
+projectile_scene = ExtResource("3_b7fjf")
+aim_rotation_source_path = NodePath("LeftAimSystem")
+aim_type = 1
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = 0.0
+spawn_delay = 0.3
+transition_delay = 1.1
+spawn_cycles = 5
+step_cycles = 1
+sound_effect_name = ""
+sound_type = 0
+
+[sub_resource type="Resource" id="Resource_plxsh"]
+script = ExtResource("3_aocrb")
+skip = false
+spawn_position_parent_path = NodePath("RightSpawnPoint")
+projectile_scene = ExtResource("3_b7fjf")
+aim_rotation_source_path = NodePath("RightAimSystem")
+aim_type = 1
+position_offset = Vector2(0, 0)
+rotation_offset_degrees = 0.0
+spawn_delay = 0.3
+transition_delay = 1.1
+spawn_cycles = 5
+step_cycles = 1
+sound_effect_name = ""
+sound_type = 0
 
 [node name="LevelTemplate" instance=ExtResource("1_bygxd")]
 
@@ -17,19 +52,44 @@ source_line_parent = NodePath("../Drawings/DrawingGuideParent")
 points = PackedVector2Array(71, 115, 75, 95, 83, 76, 103, 91, 113, 110, 163, 105, 169, 88, 184, 66, 203, 85, 216, 110, 219, 136, 216, 162, 208, 188, 192, 208, 125, 215, 84, 199, 68, 167, 69, 139, 71, 114)
 
 [node name="GuideLine2" parent="Drawings/DrawingGuideParent" index="1" instance=ExtResource("2_latum")]
-points = PackedVector2Array(96, 128, 118, 126, 124, 141, 119, 159, 103, 161, 93, 146, 96, 128)
+points = PackedVector2Array(96, 124, 117, 123, 126, 141, 122, 161, 105, 163, 91, 145, 96, 124)
 
 [node name="GuideLine3" parent="Drawings/DrawingGuideParent" index="2" instance=ExtResource("2_latum")]
-points = PackedVector2Array(169, 120, 188, 117, 197, 132, 195, 151, 176, 153, 168, 137, 169, 120)
+points = PackedVector2Array(167, 115, 188, 112, 201, 130, 197, 154, 176, 156, 163, 138, 167, 116)
 
 [node name="GuideLine6" parent="Drawings/DrawingGuideParent" index="3" instance=ExtResource("2_latum")]
-points = PackedVector2Array(103, 127, 111, 126, 116, 143, 117, 159, 108, 160, 103, 144, 103, 127)
+points = PackedVector2Array(102, 124, 111, 123, 119, 141, 119, 161, 108, 162, 101, 142, 102, 124)
 
 [node name="GuideLine7" parent="Drawings/DrawingGuideParent" index="4" instance=ExtResource("2_latum")]
-points = PackedVector2Array(175, 119, 183, 118, 191, 134, 191, 151, 181, 152, 176, 135, 175, 119)
+points = PackedVector2Array(174, 114, 183, 113, 193, 135, 192, 154, 182, 155, 175, 137, 174, 114)
 
 [node name="GuideLine4" parent="Drawings/DrawingGuideParent" index="5" instance=ExtResource("2_latum")]
 points = PackedVector2Array(112, 181, 128, 194, 141, 192, 152, 180, 162, 190, 179, 188, 188, 173)
 
 [node name="GuideLine5" parent="Drawings/DrawingGuideParent" index="6" instance=ExtResource("2_latum")]
 points = PackedVector2Array(144, 162, 161, 161, 152, 170, 144, 162)
+
+[node name="GuideLine8" parent="Drawings/DrawingGuideParent" index="7" instance=ExtResource("2_latum")]
+
+[node name="ProjectileGenerator" parent="." index="5"]
+steps = Array[ExtResource("3_aocrb")]([SubResource("Resource_lgf3y"), SubResource("Resource_plxsh")])
+
+[node name="LeftAimSystem" type="Node2D" parent="ProjectileGenerator" index="1" node_paths=PackedStringArray("aim_target")]
+position = Vector2(110, 143)
+script = ExtResource("4_8foju")
+aim_target = NodePath("../../Player")
+
+[node name="RightAimSystem" type="Node2D" parent="ProjectileGenerator" index="2" node_paths=PackedStringArray("aim_target")]
+position = Vector2(184, 134)
+script = ExtResource("4_8foju")
+aim_target = NodePath("../../Player")
+
+[node name="LeftSpawnPoint" type="Node2D" parent="ProjectileGenerator" index="3"]
+position = Vector2(110, 143)
+
+[node name="Marker2D" type="Marker2D" parent="ProjectileGenerator/LeftSpawnPoint" index="0"]
+
+[node name="RightSpawnPoint" type="Node2D" parent="ProjectileGenerator" index="4"]
+position = Vector2(184, 134)
+
+[node name="Marker2D2" type="Marker2D" parent="ProjectileGenerator/RightSpawnPoint" index="0"]
