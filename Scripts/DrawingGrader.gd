@@ -59,6 +59,7 @@ func _grade_accuracy():
 		return "D"
 		
 
+# This doesn't work if the source lines don't have a position of (0,0) and I don't feel like fixing it
 func _calculate_error():
 	
 	var point_errors = []

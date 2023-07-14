@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://rul4x6ei2o3t"]
+
+[ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Scenes/LevelTemplate.tscn" id="1_bygxd"]
+[ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_latum"]
+
+[node name="LevelTemplate" instance=ExtResource("1_bygxd")]
+
+[node name="ResultsUI" parent="." index="0"]
+visible = false
+
+[node name="DrawingGrader" parent="." index="3" node_paths=PackedStringArray("source_line_parent")]
+source_line_parent = NodePath("../Drawings/DrawingGuideParent")
+
+[node name="DrawingGuideParent" type="Node" parent="Drawings" index="1"]
+
+[node name="GuideLine" parent="Drawings/DrawingGuideParent" index="0" instance=ExtResource("2_latum")]
+points = PackedVector2Array(71, 115, 75, 95, 83, 76, 103, 91, 113, 110, 163, 105, 169, 88, 184, 66, 203, 85, 216, 110, 219, 136, 216, 162, 208, 188, 192, 208, 125, 215, 84, 199, 68, 167, 69, 139, 71, 114)
+
+[node name="GuideLine2" parent="Drawings/DrawingGuideParent" index="1" instance=ExtResource("2_latum")]
+points = PackedVector2Array(96, 128, 118, 126, 124, 141, 119, 159, 103, 161, 93, 146, 96, 128)
+
+[node name="GuideLine3" parent="Drawings/DrawingGuideParent" index="2" instance=ExtResource("2_latum")]
+points = PackedVector2Array(169, 120, 188, 117, 197, 132, 195, 151, 176, 153, 168, 137, 169, 120)
+
+[node name="GuideLine6" parent="Drawings/DrawingGuideParent" index="3" instance=ExtResource("2_latum")]
+points = PackedVector2Array(103, 127, 111, 126, 116, 143, 117, 159, 108, 160, 103, 144, 103, 127)
+
+[node name="GuideLine7" parent="Drawings/DrawingGuideParent" index="4" instance=ExtResource("2_latum")]
+points = PackedVector2Array(175, 119, 183, 118, 191, 134, 191, 151, 181, 152, 176, 135, 175, 119)
+
+[node name="GuideLine4" parent="Drawings/DrawingGuideParent" index="5" instance=ExtResource("2_latum")]
+points = PackedVector2Array(112, 181, 128, 194, 141, 192, 152, 180, 162, 190, 179, 188, 188, 173)
+
+[node name="GuideLine5" parent="Drawings/DrawingGuideParent" index="6" instance=ExtResource("2_latum")]
+points = PackedVector2Array(144, 162, 161, 161, 152, 170, 144, 162)
