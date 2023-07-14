@@ -76,7 +76,6 @@ enabled = true
 point_count = 4
 init_rotation = 90.0
 position_offset = Vector2(42, 0)
-rotation_offset_degrees = null
 
 [node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator" index="0"]
 rotation = 1.5708
@@ -101,7 +100,6 @@ point_count = 4
 init_position = Vector2(23, 0)
 init_rotation = 90.0
 position_offset = Vector2(42, 0)
-rotation_offset_degrees = null
 
 [node name="0" type="Marker2D" parent="ProjectileGenerator/SpawnPointGenerator2" index="0"]
 position = Vector2(23, 0)

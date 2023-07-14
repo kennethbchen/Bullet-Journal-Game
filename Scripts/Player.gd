@@ -89,7 +89,7 @@ func _change_to_grabbed():
 	current_state = STATE.GRABBED
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
-	pen_sprite.modulate = Color(1,1,1,0.5)
+	pen_sprite.modulate = Color(1,1,1,0.2)
 	
 	pen_grabbed.emit()
 	
@@ -100,7 +100,7 @@ func _change_to_hitstun(collision: KinematicCollision2D, delta: float):
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	pen_sprite.modulate = Color(1,1,1,0.5)
+	pen_sprite.modulate = Color(1,1,1,0.2)
 	
 	_start_drawing()
 	
