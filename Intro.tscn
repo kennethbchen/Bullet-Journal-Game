@@ -42,6 +42,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,7 +53,11 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 4.0
-text = "The credits go here but they don't exist yet so..."
+text = "\"Habbo\" Font by Nimble Beasts Collective - 
+https://nimblebeastscollective.itch.io/nb-pixel-font-bundle
+
+Sound effects made in jsfxr - 
+https://sfxr.me/"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -61,6 +69,7 @@ text = "Close"
 
 [node name="ResultsUI" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="Background" type="TextureRect" parent="ResultsUI"]
 modulate = Color(0, 0, 0, 0.490196)
@@ -132,6 +141,7 @@ size_flags_stretch_ratio = 0.0
 text = "Next"
 
 [node name="GameUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DoneButton" type="Button" parent="GameUI"]
 anchors_preset = 3
