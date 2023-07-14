@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://drjxkh6wmbou4"]
+[gd_scene load_steps=9 format=3 uid="uid://drjxkh6wmbou4"]
 
 [ext_resource type="PackedScene" uid="uid://cgfnwtxbl14yp" path="res://Scenes/LevelTemplate.tscn" id="1_jm22h"]
+[ext_resource type="PackedScene" uid="uid://rul4x6ei2o3t" path="res://Scenes/Levels/Level3.tscn" id="2_6rdik"]
 [ext_resource type="PackedScene" uid="uid://cbkrudifu2xkr" path="res://Scenes/GuideLine.tscn" id="2_ixbb4"]
 [ext_resource type="PackedScene" uid="uid://ckt2ug7d6uwrw" path="res://Scenes/WaterProjectile.tscn" id="3_fvcgk"]
 [ext_resource type="Script" path="res://Scripts/BulletHell/ProjectileGeneratorStep.gd" id="4_q608g"]
@@ -39,6 +40,7 @@ sound_effect_name = ""
 sound_type = 0
 
 [node name="Level2" instance=ExtResource("1_jm22h")]
+next_scene = ExtResource("2_6rdik")
 
 [node name="ResultsUI" parent="." index="0"]
 visible = false
